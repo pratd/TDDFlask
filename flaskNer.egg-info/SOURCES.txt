@@ -1,0 +1,5 @@
+setup.py
+flaskNer.egg-info/PKG-INFO
+flaskNer.egg-info/SOURCES.txt
+flaskNer.egg-info/dependency_links.txt
+flaskNer.egg-info/top_level.txt
