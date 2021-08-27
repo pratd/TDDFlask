@@ -67,3 +67,12 @@ class TestNerClient(unittest.TestCase):
         result = ner.get_ents('...')
         expected_result = {'ents' :[{'ent' : 'Australia', 'label' : 'Location'}], 'html' : ""}
         self.assertListEqual(result['ents'], expected_result['ents'])
+
+    def test_get_ents_given_multiple_ents_serializes_all(self):
+        model = NerModelTestDouble('eng')
+        doc_ents = [{'text' : 'Australia', 'label_' : 'GPE'}, {'text': 'Judith Polgar', 'label_' : 'PERSON'}]
+        model.returns_doc_ents(doc_ents)
+        ner = NamedEntityClient(model)
+        result = ner.get_ents('...')
+        expected_result = {'ents' :[{'ent' : 'Australia', 'label' : 'Location'},  {'ent': 'Judith Polgar', 'label' : 'Person'}], 'html' : ""}
+        self.assertListEqual(result['ents'], expected_result['ents'])
